@@ -1,0 +1,14 @@
+{% extends 'root.html' %}
+
+{% block content %}
+
+<div class="">
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Регистрация" class="btn btn-success">
+    </form>
+<!--    <a href="https://github.com/login/oauth/authorize/?client_id={{client_id}}">Войти через GitHub</a>-->
+</div>
+
+{% endblock %}

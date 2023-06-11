@@ -1,0 +1,53 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}Список товаров{% endblock %}
+
+{% block content %}
+<center><h4>Список товаров</h4></center>
+    <def class="Tovar">
+            {% for Tov in tovar_list %}
+        <center>
+            {% include 'main/product_list_item.html' with product=Tov %}
+        </center>
+            {% endfor %}
+    </def>
+
+    <ul class="list-unstyled list-group list-group-horizontal">
+        {% if tovar_list.has_previous %}
+            <a href="{% url 'products:list' %}?page={{tovar_list.previous_page_number}}" class="text-reset">
+        {% endif %}
+        <li class="list-group-item">
+                &lt;
+            </li>
+        {% if tovar_list.has_previous %}
+         </a>
+        {% endif %}
+
+    {% for i in paginator.page_range %}
+        {% if i != tovar_list.number  %}
+            <a href="{% url 'products:list' %}?page={{i}}" class="text-reset">
+         {% endif %}
+            <li class="list-group-item
+                {% if i == tovar_list.number %}
+                    active
+                {% endif %}">
+                    {{i}}
+            </li>
+            {% if i != tovar_list.number %}
+                </a>
+            {% endif %}
+    {% endfor %}
+
+        {% if tovar_list.has_next %}
+            <a href="{% url 'products:list' %}?page={{tovar_list.next_page_number}}" class="text-reset">
+        {% endif %}
+        <li class="list-group-item">
+                &gt;
+            </li>
+        {% if tovar_list.has_next %}
+         </a>
+        {% endif %}
+
+    </ul>
+{% endblock %}

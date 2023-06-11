@@ -1,0 +1,20 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}Подробности{% endblock %}
+
+{% block content %}
+    <def class="Pod">
+        <center><h4>Подробности</h4></center>
+        {% include 'main/product_list_item.html' %}
+    </def>
+
+    <form action="." method="post" class="form">
+        {% csrf_token %}
+        {% if in_cart %}
+            <p>{{ in_cart }}</p>
+        {% endif %}
+        {{ form.as_p }}
+        <input class="btn btn-success" type="submit" value="Добавить в корзину"/>
+    </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load te_func %}
+<div class="{{product.id}}">
+        <div class="Pod">
+        <a href="{% url 'products:details' product.pk %}"><p>Название товара: {{ product.name }}</p></a>
+        <p>Его гарантия (г.): {{ product.garanty }}</p>
+        <p>Количество (шт.): {{ product.count }}</p>
+        {% if is_cart %}
+                <p>Kоличество (в корзине): <span class="product-{{product.id}}-count">{{ cart|get_item:product.id }}</span></p>
+                <div class="">
+                        <input class="product-{{product.id}}-change" type="number" value="{{ cart|get_item:product.id }}">
+                        <input class="product-{{product.id}}-change-btn btn btn-warning btn-change" value="Изменить" type="button">
+                </div>
+                <input type="submit" class="btn btn-danger prod-{{product.id}} btn-delete" value="Удалить">
+        {% endif %}
+        </div>
+</div>
